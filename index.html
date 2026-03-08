@@ -106,35 +106,90 @@ strong{color:#fff}
 }
 
 /* ===== REVIEWS ===== */
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 20px;
+.reviews-section {
+  background: #030303;
 }
 
-.review-card {
+.reviews-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3d7aff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 56px;
+}
+
+.reviews-label::before,
+.reviews-label::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: #3d7aff;
+  opacity: 0.5;
+}
+
+.reviews-list {
+  max-width: 580px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
-.review-tag {
-  display: inline-block;
-  font-size: 0.75rem;
+.review-item {
+  position: relative;
+  background: #090909;
+  border: 1px solid #181818;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.review-item:hover {
+  border-color: rgba(47,124,255,0.2);
+  transform: translateY(-2px);
+}
+
+.review-item-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px 16px;
+}
+
+.review-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(47,124,255,0.6);
+}
+
+.review-label-text {
+  font-size: 0.73rem;
   font-weight: 700;
-  color: var(--blue);
-  border: 1px solid var(--blue);
-  border-radius: 100px;
-  padding: 5px 14px;
-  margin-bottom: 12px;
-  letter-spacing: 0.03em;
-  align-self: flex-start;
+  color: #5a9bff;
+  letter-spacing: 0.04em;
+  flex: 1;
+  text-align: left;
 }
 
-.review-card img {
+.review-stars-small {
+  font-size: 0.7rem;
+  color: #3d7aff;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+.review-item img {
   width: 100%;
-  border-radius: 16px;
-  border: 1px solid var(--line);
+  display: block;
+  border-top: 1px solid #141414;
 }
 
 /* ===== PROFILE ===== */
@@ -228,9 +283,6 @@ strong{color:#fff}
     gap:20px;
   }
 
-  .reviews-grid {
-    grid-template-columns: 1fr;
-  }
 
   .profile-grid{
     grid-template-columns:1fr;
@@ -372,7 +424,7 @@ strong{color:#fff}
 </section>
 
 <!-- REVIEWS -->
-<section>
+<section class="reviews-section">
   <div class="container">
     <h2>실제로 변화한 사람들의 이야기</h2>
 
@@ -381,45 +433,79 @@ strong{color:#fff}
       <strong>움직임의 원인을 찾고 나서 달라졌습니다.</strong>
     </p>
 
-    <div class="reviews-grid">
+    <div class="reviews-label">네이버 플레이스 실제 후기</div>
 
-      <div class="review-card">
-        <div class="review-tag">골절 후유증 · 한 달 만에 통증 해결</div>
+    <div class="reviews-list">
+
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">골절 후유증 · 한 달 만에 통증 해결</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review1.jpg" alt="후기 1">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">목 통증 · 체험 당일 효과</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">목 통증 · 체험 당일 효과</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review2.jpg" alt="후기 2">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">척추디스크 · 허리 통증</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">척추디스크 · 허리 통증</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review3.jpg" alt="후기 3">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">승모근 · 뒷목 통증</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">승모근 · 뒷목 통증</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review4.jpg" alt="후기 4">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">골프 스윙 · 거리 향상</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">골프 스윙 · 거리 향상</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review5.jpg" alt="후기 5">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">여러 곳 비교 후 등록</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">여러 곳 비교 후 등록</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review6.jpg" alt="후기 6">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">기존 PT와 다른 접근</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">기존 PT와 다른 접근</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review7.jpg" alt="후기 7">
       </div>
 
-      <div class="review-card">
-        <div class="review-tag">4곳 방문 후 바로 등록</div>
+      <div class="review-item">
+        <div class="review-item-header">
+          <div class="review-dot"></div>
+          <span class="review-label-text">4곳 방문 후 바로 등록</span>
+          <span class="review-stars-small">★★★★★</span>
+        </div>
         <img src="review8.jpg" alt="후기 8">
       </div>
 
