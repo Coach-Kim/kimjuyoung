@@ -196,9 +196,9 @@ nav.scrolled { background:rgba(5,5,5,.93); backdrop-filter:blur(12px); border-bo
 .marquee-row1 .marquee-track img { height:340px; }
 .marquee-row2 .marquee-track img { height:210px; }
 .marquee-row3 .marquee-track img { height:140px; }
-.marquee-row1 .marquee-track { animation:mqLeft  100s linear infinite; }
-.marquee-row2 .marquee-track { animation:mqRight  95s linear infinite; }
-.marquee-row3 .marquee-track { animation:mqLeft   90s linear infinite; }
+.marquee-row1 .marquee-track { animation:mqLeft  130s linear infinite; }
+.marquee-row2 .marquee-track { animation:mqRight 110s linear infinite; }
+.marquee-row3 .marquee-track { animation:mqLeft   65s linear infinite; }
 @keyframes mqLeft  { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
 @keyframes mqRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
 
@@ -771,7 +771,7 @@ setTimeout(type, 1400);
         img.width  = Math.round(ow * displayH / oh);
         img.height = displayH;
       }
-      img.src = '리뷰후기/' + id + '.jpg';
+      img.src = '%EB%A6%AC%EB%B7%B0%ED%9B%84%EA%B8%B0/' + id + '.jpg';
       img.alt = '';
       img.decoding = 'async';
       track.appendChild(img);
