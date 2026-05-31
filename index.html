@@ -187,22 +187,20 @@ nav.scrolled { background:rgba(5,5,5,.93); backdrop-filter:blur(12px); border-bo
 }
 .reviews-header-label { font-size:.78rem; font-weight:700; color:var(--blue); letter-spacing:.08em; white-space:nowrap; }
 
-.carousel-wrap { max-width:540px; margin:0 auto; position:relative; }
-.carousel-track { display:flex; overflow-x:scroll; scroll-snap-type:x mandatory; scroll-behavior:smooth; gap:0; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-.carousel-track::-webkit-scrollbar { display:none; }
-.review-item {
-  min-width:100%; flex-shrink:0; scroll-snap-align:start; background:#080808; border:1px solid #161616; border-radius:16px;
-  overflow:hidden;
-}
-.review-head { display:flex; align-items:center; gap:10px; padding:16px 20px 12px; }
-.review-dot { width:6px; height:6px; border-radius:50%; background:var(--blue); flex-shrink:0; box-shadow:0 0 8px rgba(47,124,255,.7); }
-.review-tag { font-size:.68rem; font-weight:700; color:#5a9bff; letter-spacing:.02em; flex:1; text-align:left; }
-.review-stars { font-size:.62rem; color:var(--blue); opacity:.6; letter-spacing:1px; }
-.review-item img { width:100%; display:block; border-top:1px solid #111; height:420px; object-fit:cover; object-position:top; }
-@media (max-width:640px) { .review-item img { height:280px; } }
-.carousel-dots { display:flex; justify-content:center; gap:6px; margin-top:20px; }
-.carousel-dot { width:6px; height:6px; border-radius:50%; background:var(--sub2); transition:background .3s, transform .3s; cursor:pointer; border:none; padding:0; }
-.carousel-dot.active { background:var(--blue); transform:scale(1.4); }
+/* ── 리뷰 마퀴 ── */
+.review-marquee { overflow:hidden; padding:8px 0 32px; }
+.marquee-row-wrap { overflow:hidden; margin-bottom:14px; }
+.marquee-row-wrap:last-child { margin-bottom:0; }
+.marquee-track { display:flex; gap:10px; width:max-content; will-change:transform; }
+.marquee-track img { width:auto; border-radius:10px; flex-shrink:0; display:block; pointer-events:none; }
+.marquee-row1 .marquee-track img { height:340px; }
+.marquee-row2 .marquee-track img { height:210px; }
+.marquee-row3 .marquee-track img { height:140px; }
+.marquee-row1 .marquee-track { animation:mqLeft  100s linear infinite; }
+.marquee-row2 .marquee-track { animation:mqRight  95s linear infinite; }
+.marquee-row3 .marquee-track { animation:mqLeft   90s linear infinite; }
+@keyframes mqLeft  { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
+@keyframes mqRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
 
 .stats-bar {
   display:flex; align-items:center; justify-content:center;
@@ -523,43 +521,13 @@ footer { border-top:1px solid var(--line); padding:32px 20px; text-align:center;
     <div class="reviews-header-row r d3">
       <span class="reviews-header-label">네이버 플레이스 실제 후기</span>
     </div>
-    <div class="carousel-wrap r">
-      <div class="carousel-track" id="reviewTrack">
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">골절 후유증 · 한 달 만에 통증 해결</span><span class="review-stars">★★★★★</span></div>
-          <img src="review1.jpg" alt="후기 1" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">목 통증 · 체험 당일 효과</span><span class="review-stars">★★★★★</span></div>
-          <img src="review2.jpg" alt="후기 2" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">척추디스크 · 허리 통증</span><span class="review-stars">★★★★★</span></div>
-          <img src="review3.jpg" alt="후기 3" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">승모근 · 뒷목 통증</span><span class="review-stars">★★★★★</span></div>
-          <img src="review4.jpg" alt="후기 4" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">골프 스윙 · 거리 향상</span><span class="review-stars">★★★★★</span></div>
-          <img src="review5.jpg" alt="후기 5" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">여러 곳 비교 후 등록</span><span class="review-stars">★★★★★</span></div>
-          <img src="review6.jpg" alt="후기 6" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">기존 PT와 다른 접근</span><span class="review-stars">★★★★★</span></div>
-          <img src="review7.jpg" alt="후기 7" loading="lazy">
-        </div>
-        <div class="review-item">
-          <div class="review-head"><div class="review-dot"></div><span class="review-tag">4곳 방문 후 바로 등록</span><span class="review-stars">★★★★★</span></div>
-          <img src="review8.jpg" alt="후기 8" loading="lazy">
-        </div>
-      </div>
-    </div>
-    <div class="carousel-dots" id="reviewDots"></div>
+  </div>
+  <div class="review-marquee r">
+    <div class="marquee-row-wrap marquee-row1" id="marqueeRow1"></div>
+    <div class="marquee-row-wrap marquee-row2" id="marqueeRow2"></div>
+    <div class="marquee-row-wrap marquee-row3" id="marqueeRow3"></div>
+  </div>
+  <div class="wrap center">
     <div class="stats-bar r">
       <span>前 다산 피트너 PT 스튜디오 대표</span>
       <span class="stats-sep"></span>
@@ -784,37 +752,39 @@ function type() {
 }
 setTimeout(type, 1400);
 
-// 캐러셀
+// 리뷰 마퀴
 (function(){
-  const track = document.getElementById('reviewTrack');
-  const dotsWrap = document.getElementById('reviewDots');
-  const items = track.querySelectorAll('.review-item');
-  const total = items.length;
-  let cur = 0, timer;
+  // 원본 치수 [w,h] — id 순서, index = id-1 (id 263 없음 → 0,0)
+  const D=[463,383,467,198,457,225,458,202,465,198,465,290,462,200,465,226,463,407,468,231,471,477,468,346,465,260,468,380,462,292,468,323,466,232,465,700,468,621,472,350,468,410,465,173,468,317,465,485,467,172,458,176,456,262,462,186,465,225,462,165,462,305,467,257,460,217,460,406,452,287,461,217,457,251,462,258,466,303,458,226,470,337,468,222,467,250,463,221,462,248,467,196,471,396,471,253,457,493,467,173,458,212,470,266,467,220,475,408,462,260,467,196,461,165,472,170,471,455,462,206,463,231,460,202,462,163,472,227,472,192,467,207,468,280,472,231,471,261,466,172,462,228,463,190,462,188,458,162,471,193,463,522,458,223,453,225,468,352,470,513,467,266,467,201,458,167,467,196,463,222,470,200,467,163,462,197,461,247,462,162,466,200,470,231,470,251,466,232,466,522,467,233,457,323,463,300,471,238,457,191,471,207,458,256,462,208,462,273,466,196,466,235,463,511,467,167,467,297,466,387,468,271,453,262,465,286,471,278,466,256,467,315,465,307,472,288,473,391,463,452,465,360,457,317,463,363,468,431,473,390,470,426,465,358,466,357,470,451,465,286,471,620,465,283,467,292,455,546,463,362,457,340,456,606,470,328,472,482,467,352,461,295,461,387,465,320,467,248,457,406,461,390,463,358,465,516,470,282,461,345,472,373,461,342,467,247,462,528,463,453,463,215,462,321,462,346,458,396,457,453,467,327,457,341,472,383,467,322,462,330,462,311,472,360,472,373,462,417,458,338,470,516,467,427,467,332,462,320,467,337,467,322,461,367,457,377,466,545,471,532,471,355,462,370,462,310,466,398,473,668,516,472,516,328,521,503,502,357,512,373,512,367,513,371,512,625,423,697,513,398,513,395,515,322,517,327,517,617,516,426,520,583,511,330,522,432,513,317,516,358,506,366,512,435,508,392,515,337,511,355,510,332,503,371,510,371,517,622,511,437,520,397,512,470,517,333,516,392,516,387,511,473,515,370,517,476,508,431,517,427,522,262,507,342,512,483,516,651,516,391,513,402,522,667,512,438,520,403,513,412,452,733,513,297,513,432,512,445,515,713,512,287,513,500,508,242,503,436,507,243,511,433,506,462,513,438,517,401,513,468,511,431,517,488,517,467,517,410,522,567,512,426,511,411,522,438,511,396,521,542,472,618,412,646,0,0,476,272,477,385,422,626,472,411,476,332,462,231,472,335,470,373,366,643,462,357,470,291,425,623,422,612,352,682,357,685,320,710,377,662,358,685,472,605,475,381,471,587,465,527,471,507,351,600,412,415,467,361,476,313,475,372,477,477,475,570,462,277,371,593,476,501,426,642,428,525,476,575,470,450,468,442,472,447,473,608,466,342,465,342];
 
-  items.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => go(i));
-    dotsWrap.appendChild(d);
-  });
+  const highImages = [9,11,18,19,21,24,34,49,54,59,76,80,95,107,120,124,126,129,131,134,137,139,145,148,154,155,160,169,171,172,179,180,185,186,188,193,194,199,200,201,203,207,214,215,217,221,223,224,225,228,229,231,232,233,234,235,236,238,239,240,242,244,246,247,248,249,250,251,252,253,254,255,256,257,258,260,261,262,266,267,272,275,276,277,278,279,280,281,282,284,285,286,287,288,292,293,295,296,297,298,299,300,301,302,303];
+  const medImages  = [1,6,12,13,14,15,16,20,23,27,31,32,35,38,39,41,47,48,52,55,67,69,79,81,97,98,102,104,109,110,111,112,113,114,115,116,117,118,119,121,122,123,125,127,128,130,132,133,135,136,138,140,141,142,143,146,147,149,150,151,152,157,158,159,161,162,163,164,165,166,167,168,170,173,174,175,176,177,178,181,182,183,184,187,189,190,191,192,195,196,197,198,202,204,205,206,208,209,210,211,212,213,216,218,219,220,222,226,227,230,237,241,259,264,265,268,270,271,273,274,283,289,290,291,294,304,305];
+  const lowImages  = [2,3,4,5,7,8,10,17,22,25,26,28,29,30,33,36,37,40,42,43,44,45,46,50,51,53,56,57,58,60,61,62,63,64,65,66,68,70,71,72,73,74,75,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,100,101,103,105,106,108,144,153,156,243,245,269];
 
-  function go(n) {
-    cur = (n + total) % total;
-    track.scrollTo({ left: cur * track.offsetWidth, behavior: 'smooth' });
-    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  function buildTrack(ids, displayH) {
+    const track = document.createElement('div');
+    track.className = 'marquee-track';
+    [...ids, ...ids].forEach(id => {
+      const img = document.createElement('img');
+      const ow = D[(id-1)*2], oh = D[(id-1)*2+1];
+      if (ow && oh) {
+        img.width  = Math.round(ow * displayH / oh);
+        img.height = displayH;
+      }
+      img.src = '리뷰후기/' + id + '.jpg';
+      img.alt = '';
+      img.decoding = 'async';
+      track.appendChild(img);
+    });
+    return track;
   }
 
-  function startTimer() { timer = setInterval(() => go(cur + 1), 3500); }
-  function stopTimer() { clearInterval(timer); }
-
-  startTimer();
-  track.addEventListener('touchstart', stopTimer, { passive:true });
-  track.addEventListener('touchend', () => {
-    cur = Math.round(track.scrollLeft / track.offsetWidth);
-    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
-    startTimer();
-  }, { passive:true });
+  const row1 = document.getElementById('marqueeRow1');
+  const row2 = document.getElementById('marqueeRow2');
+  const row3 = document.getElementById('marqueeRow3');
+  if (row1) row1.appendChild(buildTrack(highImages, 340));
+  if (row2) row2.appendChild(buildTrack(medImages,  210));
+  if (row3) row3.appendChild(buildTrack(lowImages,  140));
 })();
 
 document.querySelectorAll('.faq-q').forEach(btn => {
